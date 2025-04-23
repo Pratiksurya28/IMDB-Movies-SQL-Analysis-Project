@@ -39,9 +39,6 @@ The project utilizes two relational tables:
 
 ## 📌 SQL Tasks Performed
 
-# Combine all SQL queries from the IMDB Movies project into one .sql file
-
-imdb_sql_queries = """
 ### a) **Get all data about movies**
 ```sql
 SELECT * FROM movies;
