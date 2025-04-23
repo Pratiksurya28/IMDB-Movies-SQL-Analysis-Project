@@ -42,75 +42,99 @@ The project utilizes two relational tables:
 # Combine all SQL queries from the IMDB Movies project into one .sql file
 
 imdb_sql_queries = """
--- a) Get all data about movies
+### a) **Get all data about movies**
+```sql
 SELECT * FROM movies;
-
--- b) Get all data about directors
+```
+### b) **Get all data about directors**
+```sql
 SELECT * FROM directors;
+```
 
--- c) Total number of movies in the database
+### c) **Total number of movies in the database**
+```sql
 SELECT COUNT(original_title) FROM movies;
+```
 
--- d) Find these 3 directors: James Cameron, Luc Besson, John Woo
+###  d) **Find these 3 directors: James Cameron, Luc Besson, John Woo**
+```sql
 SELECT * FROM directors 
 WHERE name IN ('James Cameron', 'Luc Besson', 'John Woo');
+```
 
--- e) List of all directors with names starting with 'S'
+### e) **List of all directors with names starting with 'S'**
+```sql
 SELECT * FROM directors 
 WHERE name LIKE 'S%';
+```
 
--- f) Count of female directors
+### f) **Count of female directors**
+```sql
 SELECT COUNT(*) FROM directors 
 WHERE gender = 1;
+```
 
--- g) Name of the 10th female director by ID
+### g) **Name of the 10th female director by ID**
+```sql
 SELECT name FROM directors 
 WHERE gender = 1 
 ORDER BY id ASC 
 LIMIT 1 OFFSET 9;
+```
 
--- h) Top 3 most popular movies
+### h) **Top 3 most popular movies**
+```sql
 SELECT original_title 
 FROM movies 
 ORDER BY popularity DESC 
 LIMIT 3;
+```
 
--- i) Top 3 most bankable (highest revenue) movies
+### i) **Top 3 most bankable (highest revenue) movies**
+```sql
 SELECT original_title 
 FROM movies 
 ORDER BY revenue DESC 
 LIMIT 3;
+```
 
--- j) Movie with the most votes since Jan 1st, 2000
+### j) **Movie with the most votes since Jan 1st, 2000**
+```sql
 SELECT original_title, vote_average, vote_count 
 FROM movies 
 WHERE release_date >= '2000-01-01' 
 ORDER BY vote_count DESC 
 LIMIT 1;
+```
 
--- k) Movies directed by Brenda Chapman
+### k) **Movies directed by Brenda Chapman**
+```sql
 SELECT m.original_title 
 FROM movies AS m 
 JOIN directors AS d 
 ON d.id = m.director_id 
 WHERE d.name = 'Brenda Chapman';
+```
 
--- l) Director with the most movies
+### l) **Director with the most movies**
+```sql
 SELECT d.name, COUNT(m.director_id) AS count_movies 
 FROM directors d 
 JOIN movies m ON d.id = m.director_id 
 GROUP BY d.name 
 ORDER BY count_movies DESC 
 LIMIT 1;
+```
 
--- m) Most bankable director (by revenue)
+### m) **Most bankable director (by revenue)**
+```sql
 SELECT d.name, SUM(m.revenue) AS total_revenue 
 FROM movies m 
 JOIN directors d ON d.id = m.director_id 
 GROUP BY d.name 
 ORDER BY total_revenue DESC 
 LIMIT 1;
-"""
+```
 
 🛠️ Tools & Environment
 Database: MySQL (remotely hosted on projects.datamites.com)
