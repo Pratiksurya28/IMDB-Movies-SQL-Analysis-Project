@@ -134,8 +134,6 @@ LIMIT 1;
 ```
 
 🛠️ Tools & Environment
-Database: MySQL (remotely hosted on projects.datamites.com)
-
 Tools: MySQL Workbench / DBeaver / DB Browser
 
 SQL Concepts Used:
